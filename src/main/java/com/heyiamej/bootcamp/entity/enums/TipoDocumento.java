@@ -1,4 +1,4 @@
-package com.heyiamej.bootcamp.entity;
+package com.heyiamej.bootcamp.entity.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,5 +1,6 @@
 package com.heyiamej.bootcamp.entity;
 
+import com.heyiamej.bootcamp.entity.enums.TipoDocumento;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -57,8 +58,14 @@ public class Pessoa {
 
 
     public void setNumeroDocumento(String numeroDocumento) {
-        if(numeroDocumento.length() == 11) setTipoDocumento(TipoDocumento.FISICA);
-        else if(numeroDocumento.length() == 14) setTipoDocumento(TipoDocumento.JURIDICA);
+        if(numeroDocumento.length() == 11) {
+            setTipoDocumento(TipoDocumento.FISICA);
+            this.numeroDocumento = numeroDocumento;
+        }
+        else if(numeroDocumento.length() == 14){
+            setTipoDocumento(TipoDocumento.JURIDICA);
+            this.numeroDocumento = numeroDocumento;
+        }
 
     }
 }

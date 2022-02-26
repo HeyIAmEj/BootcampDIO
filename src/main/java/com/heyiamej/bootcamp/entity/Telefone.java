@@ -1,5 +1,6 @@
 package com.heyiamej.bootcamp.entity;
 
+import com.heyiamej.bootcamp.entity.enums.TipoTelefone;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
