@@ -1,26 +1,32 @@
 package com.heyiamej.bootcamp.entity;
 
-import com.heyiamej.bootcamp.entity.enums.TipoDocumento;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import lombok.*;
+
 
 @Data
-@Entity
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Pessoa {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
 
-    // INFORMACOES
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private String nome;
@@ -28,44 +34,12 @@ public class Pessoa {
     @Column(nullable = false)
     private String sobrenome;
 
-    @Column(nullable = false)
-    private Date dataNascimento;
+    @Column(nullable = false, unique = true)
+    private String documento;
 
-    @Column(nullable = true)
-    private String genero;
+    private LocalDate dataNascimento;
 
-    // CONTATO
-    @Column(nullable = false)
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    private List<Telefone> telefones;
+    private List<Blog> blogs;
 
-    // DOCUMENTOS
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private TipoDocumento tipoDocumento;
-
-    @Column(nullable = false, unique=true)
-    private String numeroDocumento;
-
-    // ACESSO
-    @Column(nullable = false, unique=true)
-    private String email;
-
-    @Column(nullable = false)
-    private String senha;
-
-
-
-    public void setNumeroDocumento(String numeroDocumento) {
-        if(numeroDocumento.length() == 11) {
-            setTipoDocumento(TipoDocumento.FISICA);
-            this.numeroDocumento = numeroDocumento;
-        }
-        else if(numeroDocumento.length() == 14){
-            setTipoDocumento(TipoDocumento.JURIDICA);
-            this.numeroDocumento = numeroDocumento;
-        }
-
-    }
 }
