@@ -18,11 +18,6 @@ public class Ponto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-   /* @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private Pessoa pessoa;*/
-
     @Column(nullable = false)
     private String dataEntrada;
 

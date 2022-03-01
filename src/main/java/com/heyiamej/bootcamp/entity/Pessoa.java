@@ -36,10 +36,9 @@ public class Pessoa {
 
     @Column(nullable = true)
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "pessoa_id")
     private List<Ponto> pontos;
 
-    /*@OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private Ponto ponto;*/
+
 
 }
