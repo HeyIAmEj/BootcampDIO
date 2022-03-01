@@ -33,4 +33,7 @@ public class Ponto {
     @Column(nullable = true)
     private Integer isJustificado;
 
+    @JoinColumn(name = "pessoa_id")
+    private Long pessoa_id;
+
 }

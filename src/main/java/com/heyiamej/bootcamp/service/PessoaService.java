@@ -73,8 +73,8 @@ public class PessoaService {
 
     public MessageResponseDTO createPessoaPonto(Long id, PontoDTO pontoDTO) throws PessoaNaoEncontradaException {
         Ponto ponto = pontoMapper.toPonto(pontoDTO);
-        verifyIfExists(id);
-        Pessoa pessoa = pessoaMapper.toPessoa(findById(id));
+        Pessoa pessoa = verifyIfExists(id);
+        ponto.setPessoa_id(id);
         pessoa.getPontos().add(ponto);
         Pessoa pessoaSalva = pessoaRepository.save(pessoa);
         return criarMensagemResposta("Ponto adicionado para: ", pessoaSalva);

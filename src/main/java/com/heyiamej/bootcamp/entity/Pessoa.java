@@ -35,8 +35,7 @@ public class Pessoa {
     private List<Blog> blogs;
 
     @Column(nullable = true)
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumn(name = "pessoa_id")
+    @OneToMany(mappedBy = "pessoa_id", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Ponto> pontos;
 
 

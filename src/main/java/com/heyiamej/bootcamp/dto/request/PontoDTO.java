@@ -1,5 +1,6 @@
 package com.heyiamej.bootcamp.dto.request;
 
+import com.heyiamej.bootcamp.entity.Pessoa;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
@@ -25,5 +26,7 @@ public class PontoDTO {
     private Integer isExtra;
 
     private Integer isJustificado;
+
+    private Long pessoa_id;
 
 }

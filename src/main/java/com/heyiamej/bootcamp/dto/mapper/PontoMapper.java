@@ -7,11 +7,11 @@ import com.heyiamej.bootcamp.entity.Ponto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Service;
 
 @Mapper(componentModel = "spring")
 public interface PontoMapper {
     public static final PontoMapper INSTANCE = Mappers.getMapper(PontoMapper.class);
-
 
     Ponto toPonto(PontoDTO pontoDTO);
 

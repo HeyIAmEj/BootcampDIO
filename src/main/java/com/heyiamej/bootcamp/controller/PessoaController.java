@@ -4,6 +4,9 @@ package com.heyiamej.bootcamp.controller;
 import com.heyiamej.bootcamp.dto.request.PessoaDTO;
 import com.heyiamej.bootcamp.dto.request.PontoDTO;
 import com.heyiamej.bootcamp.dto.response.MessageResponseDTO;
+import com.heyiamej.bootcamp.entity.Blog;
+import com.heyiamej.bootcamp.entity.Pessoa;
+import com.heyiamej.bootcamp.entity.Ponto;
 import com.heyiamej.bootcamp.exception.PessoaNaoEncontradaException;
 import com.heyiamej.bootcamp.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +46,20 @@ public class PessoaController {
         return pessoaService.findById(id);
     }
 
+    @GetMapping("/criarPessoasTeste")
+    @ResponseStatus(value = HttpStatus.OK)
+    public String criarPessoasTeste()  throws PessoaNaoEncontradaException {
+        PessoaDTO pessoa1 = new PessoaDTO(1L, "Everton", "Jose", "133.118.144-77", "03/07/1999", null, null);
+        PessoaDTO pessoa2 = new PessoaDTO(2L, "Teste1", "Soares", "143.148.184-47", "03/07/1999", null, null);
+        PessoaDTO pessoa3 = new PessoaDTO(3L, "Teste2", "Santos", "143.128.184-47", "03/07/1999", null, null);
+        PessoaDTO pessoa4 = new PessoaDTO(4L, "Teste3", "Silva", "113.148.114-47", "03/07/1999", null, null);
+        pessoaService.createPessoa(pessoa1);
+        pessoaService.createPessoa(pessoa2);
+        pessoaService.createPessoa(pessoa3);
+        pessoaService.createPessoa(pessoa3);
+        return "Criado com sucesso!";
+    }
+
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public MessageResponseDTO atualizarPorId(@PathVariable Long id, @RequestBody PessoaDTO pessoaDTO)  throws PessoaNaoEncontradaException {
@@ -55,10 +72,17 @@ public class PessoaController {
         pessoaService.deletePessoaById(id);
     }
 
+    /*
+
+    CRIAR PONTO ATUALIZANDO LISTA DE PONTO DE PESSOA
+    [NÃO RECOMENDADO] POIS <PESSOA> NÃO PODE TER ACESSO A ESSA FUNCAO, EVITANDO FRAUDE
+    CRIAR PONTO FAZENDO POST EM /api/v1/ponto/{id} 
+
     @PostMapping("/{id}/ponto")
     @ResponseStatus(value = HttpStatus.CREATED)
     public MessageResponseDTO criarPessoa(@PathVariable Long id, @RequestBody @Valid PontoDTO pontoDTO) throws PessoaNaoEncontradaException {
         return pessoaService.createPessoaPonto(id, pontoDTO);
     }
+    */
 
 }
