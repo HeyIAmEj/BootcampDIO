@@ -2,6 +2,7 @@ package com.heyiamej.bootcamp.controller;
 
 
 import com.heyiamej.bootcamp.dto.request.PessoaDTO;
+import com.heyiamej.bootcamp.dto.request.PontoDTO;
 import com.heyiamej.bootcamp.dto.response.MessageResponseDTO;
 import com.heyiamej.bootcamp.exception.PessoaNaoEncontradaException;
 import com.heyiamej.bootcamp.service.PessoaService;
@@ -52,6 +53,12 @@ public class PessoaController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deletarPessoa(@PathVariable Long id)  throws PessoaNaoEncontradaException {
         pessoaService.deletePessoaById(id);
+    }
+
+    @PostMapping("/{id}/ponto")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public MessageResponseDTO criarPessoa(@PathVariable Long id, @RequestBody @Valid PontoDTO pontoDTO) throws PessoaNaoEncontradaException {
+        return pessoaService.createPessoaPonto(id, pontoDTO);
     }
 
 }

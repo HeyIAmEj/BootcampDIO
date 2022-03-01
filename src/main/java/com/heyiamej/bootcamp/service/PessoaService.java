@@ -1,6 +1,9 @@
 package com.heyiamej.bootcamp.service;
 
+import com.heyiamej.bootcamp.dto.mapper.PontoMapper;
+import com.heyiamej.bootcamp.dto.request.PontoDTO;
 import com.heyiamej.bootcamp.entity.Pessoa;
+import com.heyiamej.bootcamp.entity.Ponto;
 import com.heyiamej.bootcamp.exception.PessoaNaoEncontradaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,7 @@ public class PessoaService {
     private PessoaRepository pessoaRepository;
 
     private PessoaMapper pessoaMapper = PessoaMapper.INSTANCE;
+    private PontoMapper pontoMapper = PontoMapper.INSTANCE;
 
     @Autowired
     public PessoaService(PessoaRepository pessoaRepository) {
@@ -65,5 +69,15 @@ public class PessoaService {
 
     private MessageResponseDTO criarMensagemResposta(String x, Pessoa pessoaSalva) {
         return MessageResponseDTO.builder().message(x + pessoaSalva.getId()).build();
+    }
+
+    public MessageResponseDTO createPessoaPonto(Long id, PontoDTO pontoDTO) throws PessoaNaoEncontradaException {
+        Ponto ponto = pontoMapper.toPonto(pontoDTO);
+        verifyIfExists(id);
+        Pessoa pessoa = pessoaMapper.toPessoa(findById(id));
+        pessoa.getPontos().add(ponto);
+        Pessoa pessoaSalva = pessoaRepository.save(pessoa);
+        return criarMensagemResposta("Ponto adicionado para: ", pessoaSalva);
+
     }
 }

@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.heyiamej.bootcamp.entity.Ponto;
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -29,7 +30,7 @@ public class PessoaDTO {
     private String sobrenome;
 
     @NotEmpty
-    @CPF
+    //@CPF
     private String documento;
 
     private String dataNascimento;
@@ -37,5 +38,7 @@ public class PessoaDTO {
     @NotEmpty
     @Valid
     private List<BlogDTO> blogs;
+
+    private List<Ponto> pontos;
 
 }

@@ -12,7 +12,7 @@ public interface PessoaMapper {
 
     public static final PessoaMapper INSTANCE = Mappers.getMapper(PessoaMapper.class);
 
-    @Mapping(source="dataNascimento", target="dataNascimento", dateFormat="dd/MM/yyyy")
+    //@Mapping(source="dataNascimento", target="dataNascimento", dateFormat="dd-MM-yyyy")
     public abstract Pessoa toPessoa(PessoaDTO pessoaDTO);
 
     public abstract PessoaDTO toDTO(Pessoa pessoa);
