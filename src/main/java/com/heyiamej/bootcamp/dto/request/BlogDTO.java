@@ -26,4 +26,5 @@ public class BlogDTO {
 
     private Long inscritos;
 
+
 }

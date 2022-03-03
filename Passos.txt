@@ -1,0 +1,23 @@
+1- Entity
+2- DTO
+3- Mapper
+4- Repository
+5- Service
+6- Controller
+
+
+// Adicionar PontoService e refatorar PontoController
+
+# Testes Pagamento
+Add Pessoas testes
+Add pagamento com id de pessoa 1
+Add pagamento com id de pessoa 10 // Erro
+Add pagamento com id de pessoa 2
+Add pagamento com id de pessoa 1
+
+List All Pagamentos // Mostra o pagamento add 1 e 2
+
+List All Pagamentos Pessoa 1 // Mostra os pagamentos para pessoa 1
+
+Delete Pagamento de Id 3
+Delete Pagamento de Id 10

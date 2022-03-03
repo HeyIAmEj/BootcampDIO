@@ -31,12 +31,17 @@ public class Pessoa {
 
     private String dataNascimento;
 
+    @Column(nullable = true)
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Blog> blogs;
 
     @Column(nullable = true)
     @OneToMany(mappedBy = "pessoa_id", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Ponto> pontos;
+
+    @Column(nullable = true)
+    @OneToMany(mappedBy = "pessoa_id", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private List<Pagamento> pagamentos;
 
 
 

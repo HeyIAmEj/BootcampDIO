@@ -49,14 +49,14 @@ public class PessoaController {
     @GetMapping("/criarPessoasTeste")
     @ResponseStatus(value = HttpStatus.OK)
     public String criarPessoasTeste()  throws PessoaNaoEncontradaException {
-        PessoaDTO pessoa1 = new PessoaDTO(1L, "Everton", "Jose", "133.118.144-77", "03/07/1999", null, null);
-        PessoaDTO pessoa2 = new PessoaDTO(2L, "Teste1", "Soares", "143.148.184-47", "03/07/1999", null, null);
-        PessoaDTO pessoa3 = new PessoaDTO(3L, "Teste2", "Santos", "143.128.184-47", "03/07/1999", null, null);
-        PessoaDTO pessoa4 = new PessoaDTO(4L, "Teste3", "Silva", "113.148.114-47", "03/07/1999", null, null);
+        PessoaDTO pessoa1 = new PessoaDTO(1L, "Everton", "Jose", "133.118.144-77", "03/07/1999", null, null, null);
+        PessoaDTO pessoa2 = new PessoaDTO(2L, "Teste1", "Soares", "143.148.184-47", "03/07/1999", null, null, null);
+        PessoaDTO pessoa3 = new PessoaDTO(3L, "Teste2", "Santos", "143.128.184-47", "03/07/1999", null, null, null);
+        PessoaDTO pessoa4 = new PessoaDTO(4L, "Teste3", "Silva", "113.148.114-47", "03/07/1999", null, null, null);
         pessoaService.createPessoa(pessoa1);
         pessoaService.createPessoa(pessoa2);
         pessoaService.createPessoa(pessoa3);
-        pessoaService.createPessoa(pessoa3);
+        pessoaService.createPessoa(pessoa4);
         return "Criado com sucesso!";
     }
 
@@ -76,7 +76,7 @@ public class PessoaController {
 
     CRIAR PONTO ATUALIZANDO LISTA DE PONTO DE PESSOA
     [NÃO RECOMENDADO] POIS <PESSOA> NÃO PODE TER ACESSO A ESSA FUNCAO, EVITANDO FRAUDE
-    CRIAR PONTO FAZENDO POST EM /api/v1/ponto/{id} 
+    CRIAR PONTO FAZENDO POST EM /api/v1/ponto/{id}
 
     @PostMapping("/{id}/ponto")
     @ResponseStatus(value = HttpStatus.CREATED)

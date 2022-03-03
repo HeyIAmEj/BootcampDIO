@@ -8,6 +8,7 @@ import com.heyiamej.bootcamp.entity.Ponto;
 import com.heyiamej.bootcamp.exception.PessoaNaoEncontradaException;
 import com.heyiamej.bootcamp.repository.PessoaRepository;
 import com.heyiamej.bootcamp.repository.PontoRepository;
+import com.heyiamej.bootcamp.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,18 +24,18 @@ public class PontoController {
     private PontoRepository pontoRepository;
 
     @Autowired
+    private PessoaService pessoaService;
+
+    @Autowired
     public PontoController(PontoRepository pontoRepository) {
         this.pontoRepository = pontoRepository;
     }
 
     @GetMapping("/{id}")
     public List<PontoDTO> findById(@PathVariable Long id) throws PessoaNaoEncontradaException {
-        List<Ponto> pontoList = new ArrayList<>();
-        try {
-            pontoList = pontoRepository.findByPessoaId(id);
-        }catch (Exception e){
-            throw new PessoaNaoEncontradaException(id);
-        }
+        List<Ponto> pontoList;
+        pessoaService.findById(id);
+        pontoList = pontoRepository.findByPessoaId(id);
         return pontoList
                 .stream()
                 .map(pontoMapper::toPontoDTO)
@@ -44,13 +45,10 @@ public class PontoController {
     @PostMapping("/{id}")
     public String createById(@PathVariable Long id, @RequestBody PontoDTO pontoDTO) throws PessoaNaoEncontradaException {
         Ponto ponto = pontoMapper.toPonto(pontoDTO);
-        try {
-            ponto.setPessoa_id(id);
-            Ponto pontoSalvo = pontoRepository.save(ponto);
-            return String.format("Ponto %d, salvo para a Pessoa %d", pontoSalvo.getId(), pontoSalvo.getPessoa_id());
-        }catch (Exception e){
-            throw new PessoaNaoEncontradaException(id);
-        }
+        pessoaService.findById(id);
+        ponto.setPessoa_id(id);
+        Ponto pontoSalvo = pontoRepository.save(ponto);
+        return String.format("Ponto %d, salvo para a Pessoa %d", pontoSalvo.getId(), pontoSalvo.getPessoa_id());
     }
 
 
