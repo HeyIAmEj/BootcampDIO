@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import java.time.LocalDate;
 
 @Data
 @Getter
@@ -18,7 +20,8 @@ public class Pagamento {
     private Long id;
 
     @Column(nullable = false)
-    private String data;
+    @Valid
+    private LocalDate data;
 
     private Integer isAdiantado;
 

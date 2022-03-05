@@ -3,6 +3,7 @@ package com.heyiamej.bootcamp.entity;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.Valid;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -32,7 +33,8 @@ public class Pessoa {
     private String documento;
 
     @Column
-    private String dataNascimento;
+    @Valid
+    private LocalDate dataNascimento;
 
    /* @Column
     private Integer profissao;*/

@@ -8,6 +8,7 @@ import com.heyiamej.bootcamp.dto.request.ProfissaoDTO;
 import com.heyiamej.bootcamp.dto.response.MessageResponseDTO;
 import com.heyiamej.bootcamp.entity.*;
 import com.heyiamej.bootcamp.exception.PessoaNaoEncontradaException;
+import com.heyiamej.bootcamp.exception.ProfissaoNaoEncontradaException;
 import com.heyiamej.bootcamp.repository.AtividadeRepository;
 import com.heyiamej.bootcamp.repository.ProfissaoRepository;
 import com.heyiamej.bootcamp.service.AtividadeService;
@@ -64,7 +65,7 @@ public class PessoaController {
 
     @GetMapping("/testes")
     @ResponseStatus(value = HttpStatus.OK)
-    public String criarTodosTestes()  throws PessoaNaoEncontradaException {
+    public String criarTodosTestes() throws PessoaNaoEncontradaException, ProfissaoNaoEncontradaException {
         //Criando Profissões
         MessageResponseDTO teste = profissaoService.createProfissao(new ProfissaoDTO(1L, "Ciência da Computação", "CCO", null));
         teste = profissaoService.createProfissao(new ProfissaoDTO(2L, "Recursos Humanos", "RH", null));
@@ -78,12 +79,19 @@ public class PessoaController {
         teste = atividadeService.createAtividade(new AtividadeDTO(5L, "Processos Seletivos", "Planejamento de processos seletivos", 3, 2));
         teste = atividadeService.createAtividade(new AtividadeDTO(6L, "Arquitetura de Softwares", "Desenvolvimento de arquiteturas para softwares", 1, 1));
 
+        Profissao profissao1 = profissaoService.getProfissaoById(1L);
+        Profissao profissao2 = profissaoService.getProfissaoById(2L);
+        Profissao profissao3 = profissaoService.getProfissaoById(3L);
+
         //Criando Pessoas
-        teste = pessoaService.createPessoa(new PessoaDTO(1L, "Everton", "Jose", "133.118.144-77", "03/07/1999", null, 1, null, null, null));
-        teste = pessoaService.createPessoa(new PessoaDTO(2L, "Teste1", "Soares", "143.148.184-47", "03/07/1999", null, 1, null, null, null));
-        teste = pessoaService.createPessoa(new PessoaDTO(3L, "Teste2", "Santos", "143.128.184-47", "03/07/1999", null, 2, null, null, null));
-        teste = pessoaService.createPessoa(new PessoaDTO(4L, "Teste3", "Silva", "113.148.114-47", "03/07/1999", null, 3, null, null, null));
-        teste = pessoaService.createPessoa(new PessoaDTO(5L, "Teste4", "Silva", "213.148.114-47", "03/07/1999", null, 1, null, null, null));
+        teste = pessoaService.createPessoa(new PessoaDTO(1L, "Everton", "Jose", "748.682.614-36", "03/07/1999", profissao1, 1, null, null, null));
+        teste = pessoaService.createPessoa(new PessoaDTO(2L, "Maria", "Soares", "256.346.596-63", "03/07/1999", profissao1, 1, null, null, null));
+        teste = pessoaService.createPessoa(new PessoaDTO(3L, "Mariana", "Santos", "088.117.483-13", "03/07/1999", profissao1, 2, null, null, null));
+        teste = pessoaService.createPessoa(new PessoaDTO(4L, "Jose", "Silva", "603.836.852-30", "03/07/1999", profissao1, 3, null, null, null));
+        teste = pessoaService.createPessoa(new PessoaDTO(5L, "Bruna", "Lopes", "682.058.527-66", "03/07/1999", profissao2, 1, null, null, null));
+        teste = pessoaService.createPessoa(new PessoaDTO(6L, "Armando", "Silva", "424.397.284-20", "03/07/1999", profissao2, 2, null, null, null));
+        teste = pessoaService.createPessoa(new PessoaDTO(7L, "Clóvis", "Santos", "754.767.541-72", "03/07/1999", profissao3, 3, null, null, null));
+        teste = pessoaService.createPessoa(new PessoaDTO(8L, "Marta", "Pereira", "948.778.826-34", "03/07/1999", profissao3, 2, null, null, null));
         return "Criado com sucesso!";
     }
 
