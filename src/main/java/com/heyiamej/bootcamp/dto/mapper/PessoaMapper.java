@@ -1,8 +1,7 @@
 package com.heyiamej.bootcamp.dto.mapper;
 
 import com.heyiamej.bootcamp.dto.request.PessoaDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 import com.heyiamej.bootcamp.entity.Pessoa;
@@ -16,4 +15,5 @@ public interface PessoaMapper {
     public abstract Pessoa toPessoa(PessoaDTO pessoaDTO);
 
     public abstract PessoaDTO toDTO(Pessoa pessoa);
+
 }

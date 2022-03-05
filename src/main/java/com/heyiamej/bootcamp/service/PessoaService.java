@@ -24,6 +24,8 @@ public class PessoaService {
     private PessoaMapper pessoaMapper = PessoaMapper.INSTANCE;
     private PontoMapper pontoMapper = PontoMapper.INSTANCE;
 
+
+
     @Autowired
     public PessoaService(PessoaRepository pessoaRepository) {
         this.pessoaRepository = pessoaRepository;
@@ -31,7 +33,12 @@ public class PessoaService {
 
     public MessageResponseDTO createPessoa(PessoaDTO pessoaDTO) {
         Pessoa pessoa = pessoaMapper.toPessoa(pessoaDTO);
+
+        //pessoa.setAtividadesDesenvolvidas(null);
+        //pessoa.setAtividadesDesenvolvidas(atividadesDesenvolvidasRepository.findAtividadesByProfissaoAndNivel(pessoa.getProfissao(), pessoa.getNivel()));
+
         Pessoa pessoaSalva = pessoaRepository.save(pessoa);
+
         return criarMensagemResposta("Pessoa criada com Id: ", pessoaSalva);
 
     }
@@ -59,6 +66,7 @@ public class PessoaService {
         verifyIfExists(id);
         pessoaRepository.deleteById(id);
     }
+
 
     public MessageResponseDTO atualizarPessoaById(Long id, PessoaDTO pessoaDTO) throws PessoaNaoEncontradaException {
         verifyIfExists(id);

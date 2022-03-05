@@ -7,17 +7,22 @@
 
 
 // Adicionar PontoService e refatorar PontoController
+// Adicionar AtividadesDesenvolvidasService e refatorar AtividadesDesenvolvidasController
 
-# Testes Pagamento
-Add Pessoas testes
-Add pagamento com id de pessoa 1
-Add pagamento com id de pessoa 10 // Erro
-Add pagamento com id de pessoa 2
-Add pagamento com id de pessoa 1
+Testes AtividadesDesenvolvidasController:
+//Colocar novo campo em Pessoa para exibir Atividades Desenvolvidas, Profissao e Nivel
+//Colocar regra em PessoaService para colocar todas as atividades que Profissao e Nivel sejam iguais ao perfil
 
-List All Pagamentos // Mostra o pagamento add 1 e 2
+//Criar pessoas testes, e verificar se estão com AtividadesDesenvolvidas = []
 
-List All Pagamentos Pessoa 1 // Mostra os pagamentos para pessoa 1
+//Criar 3 atividades, duas atividades pra profissao 1, e uma para profissão 2
 
-Delete Pagamento de Id 3
-Delete Pagamento de Id 10
+//Verificar todas as atividades [Retorna 3 atividades]
+//Verificar atividades da profissao 2 [Retorna 2 atividades]
+
+//Atualizar nome da atividade 3
+//Deletar atividade 1
+//Verificar todas as atividades [Retorna 2 atividades, sendo id 2 e 3]
+
+*Verificar Pessoas e verificar se recebem atividadesDesenvolvidas
+----- nao atualiza pessoas

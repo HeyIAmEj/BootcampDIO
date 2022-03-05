@@ -1,6 +1,5 @@
 package com.heyiamej.bootcamp.dto.request;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -9,8 +8,8 @@ import javax.validation.constraints.Size;
 
 import com.heyiamej.bootcamp.entity.Pagamento;
 import com.heyiamej.bootcamp.entity.Ponto;
+import com.heyiamej.bootcamp.entity.Profissao;
 import lombok.*;
-import org.hibernate.validator.constraints.br.CPF;
 
 @Data
 @Getter
@@ -33,8 +32,12 @@ public class PessoaDTO {
     @NotEmpty
     //@CPF
     private String documento;
-
     private String dataNascimento;
+
+    //private Integer profissao;
+    private Profissao profissao;
+    private Integer nivel;
+   // private List<AtividadesDesenvolvidas> atividadesDesenvolvidas;
 
     @Valid
     private List<BlogDTO> blogs;

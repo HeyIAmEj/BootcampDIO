@@ -17,4 +17,5 @@ public interface PontoRepository extends JpaRepository<Ponto, Long> {
     @Query("select p from Ponto p where p.pessoa_id = ?1")
     List<Ponto> findByPessoaId(Long pessoa_id);
 
+
 }

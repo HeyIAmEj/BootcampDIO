@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 
@@ -26,10 +28,26 @@ public class Pessoa {
     @Column(nullable = false)
     private String sobrenome;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String documento;
 
+    @Column
     private String dataNascimento;
+
+   /* @Column
+    private Integer profissao;*/
+
+    @Column
+    private Integer nivel;
+
+    /*//@JsonManagedReference
+    @JoinColumn(name = "id")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<AtividadesDesenvolvidas> atividadesDesenvolvidas;*/
+
+    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Profissao profissao;
 
     @Column(nullable = true)
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
