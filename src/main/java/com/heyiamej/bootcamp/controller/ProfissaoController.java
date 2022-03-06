@@ -5,6 +5,7 @@ import com.heyiamej.bootcamp.dto.response.MessageResponseDTO;
 import com.heyiamej.bootcamp.entity.Profissao;
 import com.heyiamej.bootcamp.exception.ProfissaoNaoEncontradaException;
 import com.heyiamej.bootcamp.service.ProfissaoService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,7 @@ public class ProfissaoController {
     }
 
     // Cria nova Profissao
+    @Operation(summary = "Cria nova Profissão")
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public MessageResponseDTO criaProfissao(@RequestBody ProfissaoDTO profissaoDTO){
@@ -30,12 +32,14 @@ public class ProfissaoController {
     }
 
     // Ver Profissoes
+    @Operation(summary = "Lista todas as Profissões")
     @GetMapping()
     @ResponseStatus(value = HttpStatus.OK)
-    public List<Profissao> verProfissaoPorId() throws ProfissaoNaoEncontradaException {
+    public List<Profissao> verProfissao() throws ProfissaoNaoEncontradaException {
         return profissaoService.getAllProfissao();
     }
     // Ver Profissao por Id
+    @Operation(summary = "Lista Profissão por Id")
     @GetMapping("/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public Profissao verProfissaoPorId(@PathVariable Long id) throws ProfissaoNaoEncontradaException {
@@ -43,6 +47,7 @@ public class ProfissaoController {
     }
 
     // Atualiza uma Profissao por Id
+    @Operation(summary = "Atualiza Profissão por Id")
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.CREATED)
     public MessageResponseDTO atualizaProfissaoPorId(@PathVariable Long id, @RequestBody ProfissaoDTO profissaoDTO) throws ProfissaoNaoEncontradaException {
@@ -50,6 +55,7 @@ public class ProfissaoController {
     }
 
     // Deleta uma Profissao por Id
+    @Operation(summary = "Deleta Profissão por Id")
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public String deletaProfissaoPorId(@PathVariable Long id) throws ProfissaoNaoEncontradaException {

@@ -94,7 +94,7 @@ public class PessoaController {
         teste = pessoaService.createPessoa(new PessoaDTO(6L, "Armando", "Silva", "424.397.284-20", "03/07/1999", profissao2, 2, null, null, null));
         teste = pessoaService.createPessoa(new PessoaDTO(7L, "Clóvis", "Santos", "754.767.541-72", "03/07/1999", profissao3, 3, null, null, null));
         teste = pessoaService.createPessoa(new PessoaDTO(8L, "Marta", "Pereira", "948.778.826-34", "03/07/1999", profissao3, 2, null, null, null));
-        return "Criado com sucesso!";
+        return "Profissões/Atividades/Pessoas Criadas";
     }
 
     @Operation(summary = "Atualiza Pessoa por Id")
