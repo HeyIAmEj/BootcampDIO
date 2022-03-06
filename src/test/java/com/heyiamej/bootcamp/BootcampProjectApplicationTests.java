@@ -8,6 +8,7 @@ class BootcampProjectApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// Realizar testes aqui
 	}
 
 }
