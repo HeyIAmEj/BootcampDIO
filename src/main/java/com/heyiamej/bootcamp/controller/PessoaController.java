@@ -13,6 +13,7 @@ import com.heyiamej.bootcamp.repository.ProfissaoRepository;
 import com.heyiamej.bootcamp.service.AtividadeService;
 import com.heyiamej.bootcamp.service.PessoaService;
 import com.heyiamej.bootcamp.service.ProfissaoService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -42,28 +43,28 @@ public class PessoaController {
     @Autowired
     private AtividadeService atividadeService;
 
-    //@ApiOperation(value = "Cria Pessoa")
+    @Operation(summary = "Cria Pessoa")
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public MessageResponseDTO criarPessoa(@RequestBody @Valid PessoaDTO pessoaDTO) {
         return pessoaService.createPessoa(pessoaDTO);
     }
 
-    //@ApiOperation(value = "Lista todas Pessoas")
+    @Operation(summary = "Lista todas Pessoas")
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
     public List<PessoaDTO> listarTodasPessoas(){
         return pessoaService.listAll();
     }
 
-    //@ApiOperation(value = "Lista Pessoa por Id")
+    @Operation(summary = "Lista Pessoa por Id")
     @GetMapping("/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public PessoaDTO listarPorId(@PathVariable Long id)  throws PessoaNaoEncontradaException {
         return pessoaService.findById(id);
     }
 
-    //@ApiOperation(value = "Cria Todos os Testes")
+    @Operation(summary = "Cria Todos os Testes")
     @GetMapping("/testes")
     @ResponseStatus(value = HttpStatus.OK)
     public String criarTodosTestes() throws PessoaNaoEncontradaException, ProfissaoNaoEncontradaException {
@@ -96,14 +97,14 @@ public class PessoaController {
         return "Criado com sucesso!";
     }
 
-    //@ApiOperation(value = "Atualiza Pessoa por Id")
+    @Operation(summary = "Atualiza Pessoa por Id")
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public MessageResponseDTO atualizarPorId(@PathVariable Long id, @RequestBody PessoaDTO pessoaDTO)  throws PessoaNaoEncontradaException {
         return pessoaService.atualizarPessoaById(id, pessoaDTO);
     }
 
-    //@ApiOperation(value = "Deleta Pessoa por Id")
+    @Operation(summary = "Deleta Pessoa por Id")
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deletarPessoa(@PathVariable Long id)  throws PessoaNaoEncontradaException {
